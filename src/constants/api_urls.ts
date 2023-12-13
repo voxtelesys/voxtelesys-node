@@ -1,0 +1,1 @@
+export const VOICE_API_URL = 'https://voiceapi.voxtelesys.net'
