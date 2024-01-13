@@ -53,7 +53,13 @@ export interface CreateCallRequest {
   voxxml?: string
   timeout?: number
   url?: string
-  method?: 'GET' | 'POST'
+  method?: 'GET' | 'POST',
+  record?: boolean,
+  recording_status_callback?: string,
+  recording_status_callback_method?: 'GET' | 'POST',
+  recording_status_callback_event?: string,
+  recording_track?: 'inbound' | 'outbound' | 'both',
+  recording_channel?: 'mono' | 'dual'
 }
 
 export interface CreateCallResponse {

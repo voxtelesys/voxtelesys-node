@@ -109,6 +109,16 @@ export abstract class Base extends VoxXML {
   }
 
   /**
+   * Adds the "Record" verb to the VoxXML document
+   * 
+   * @param attributes attributes for "Record"
+   * @returns the "Record" element
+   */
+  record(attributes?: Attributes.RecordAttributes): Record {
+    return new Record(this.addChild('Record', attributes as object))
+  }
+
+  /**
    * Adds the "Redirect" verb to the VoxXML document
    * 
    * @param url the URL to redirect to
@@ -232,6 +242,7 @@ export class Gather extends VoxXML {
 export class Hangup extends VoxXML {}
 export class Pause extends VoxXML {}
 export class Play extends VoxXML {}
+export class Record extends VoxXML {}
 export class Redirect extends VoxXML {}
 export class Reject extends VoxXML {}
 export class Say extends VoxXML {}

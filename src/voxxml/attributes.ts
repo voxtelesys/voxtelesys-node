@@ -179,6 +179,11 @@ export interface DialAttributes {
   ringTone?: RingTone
   timeout?: number
   timeLimit?: number
+  record?: 'do-not-record' | 'record-from-answer' | 'record-from-ringing' | 'record-from-answer-dual' | 'record-from-ringing-dual'
+  recordingStatusCallback?: string
+  recordingStatusCallbackMethod?: Method
+  recordingStatusCallbackEvent?: string
+  recordingTrack?: 'inbound' | 'outbound' | 'both'
 }
 
 export interface DoAttributes {
@@ -218,6 +223,19 @@ export interface PlayAttributes {
 export interface PauseAttributes {
   length?: number
   history?: History
+}
+
+export interface RecordAttributes {
+  action?: string
+  method?: Method
+  timeout?: number
+  history?: History
+  finishOnKey?: string
+  maxLength?: number
+  playBeep?: boolean
+  recordingStatusCallback?: string
+  recordingStatusCallbackMethod?: Method
+  recordingStatusCallbackEvent?: string
 }
 
 export interface RedirectAttributes {
