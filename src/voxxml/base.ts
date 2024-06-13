@@ -168,8 +168,8 @@ export abstract class Base extends VoxXML {
    * @param attributes attributes for "Unset"
    * @returns the "Unset" element
    */
-  unset(attributes?: Attributes.UnsetAttributes, name?: string): Unset {
-    return new Unset(this.addChild('Unset', attributes as object, name))
+  unset(attributes?: Attributes.UnsetAttributes): Unset {
+    return new Unset(this.addChild('Unset', attributes as object))
   }
 }
 
@@ -210,12 +210,12 @@ export class Gather extends VoxXML {
   /**
    * Adds a "Play" verb to the "Gather" element
    * 
-   * @param text the text to say
+   * @param url the URL of the audio file to play
    * @param attributes attributes for "Play"
    * @returns the "Play" element
    */
-  play(attributes?: Attributes.PlayAttributes, text?: string): Play {
-    return new Play(this.addChild('Play', attributes as object, text))
+  play(attributes?: Attributes.PlayAttributes, url?: string): Play {
+    return new Play(this.addChild('Play', attributes as object, url))
   }
 
   /**
