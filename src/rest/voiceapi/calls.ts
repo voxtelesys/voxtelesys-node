@@ -15,7 +15,7 @@ export class CallsResource extends VoiceAPI implements APIResource {
 
   /**
    * Create an outbound call.
-   * 
+   *
    * @param data options for creating the call
    * @returns information about the call
    */
@@ -25,7 +25,7 @@ export class CallsResource extends VoiceAPI implements APIResource {
       method: 'POST',
       body: data
     }
-    
+
     return this.apiRequest(options) as Promise<CreateCallResponse>
   }
 
@@ -59,7 +59,8 @@ export interface CreateCallRequest {
   recording_status_callback_method?: 'GET' | 'POST',
   recording_status_callback_event?: string,
   recording_track?: 'inbound' | 'outbound' | 'both',
-  recording_channel?: 'mono' | 'dual'
+  recording_channel?: 'mono' | 'dual',
+  flow_guid?: string
 }
 
 export interface CreateCallResponse {
