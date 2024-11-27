@@ -4,6 +4,31 @@ type Input = 'dtmf' | 'speech' | 'dtmf speech'
 
 type Method = 'GET' | 'POST'
 
+type BankAccountType = 'consumer-checking' | 'consumer-savings' | 'commercial-checking'
+
+type PaymentMethod = 'credit-card' | 'ach-debit'
+
+type TokenType = 'one-time' | 'reusable' | 'payment-method'
+
+type Currency = 'usd'
+
+type PromptFor = 'payment-card-number'
+  | 'expiration-date'
+  | 'security-code'
+  | 'postal-code'
+  | 'bank-account-number'
+  | 'bank-routing-number'
+
+type PromptError = 'input-timeout'
+  | 'invalid-card-number'
+  | 'invalid-security-code'
+  | 'invalid-card-type'
+  | 'invalid-date'
+  | 'invalid-postal-code'
+  | 'invalid-bank-routing-number'
+  | 'invalid-bank-account-number'
+  | 'input-matching-failed'
+
 // https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
 type TTSLanguage = 'arb'
   | 'ar-AE'
@@ -743,6 +768,38 @@ export interface PlayAttributes {
   loop?: number
   digits?: string
   history?: History
+}
+
+export interface PayAttributes {
+  action?: string
+  bankAccountType?: BankAccountType
+  chargeAmount?: number
+  currency?: Currency
+  description?: string
+  input?: Input
+  history?: History
+  language?: TTSLanguage
+  maxAttempts?: number
+  method?: Method
+  minPostalCodeLength: number
+  paymentConnector?: string
+  paymentMethod?: PaymentMethod
+  postalCode?: boolean
+  securityCode?: boolean
+  statusCallback?: string
+  statusCallbackMethod?: Method
+  timeout?: number
+  tokenType?: TokenType
+  validCardTypes?: string
+}
+
+export interface PromptAttributes {
+  attempt?: string
+  cardType?: string
+  errorType?: PromptError
+  for: PromptFor
+  history?: History
+  requireMatchingInputs?: boolean
 }
 
 export interface RecordAttributes {
