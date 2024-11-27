@@ -13,7 +13,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Answer" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Answer"
    * @returns the "Answer" element
    */
@@ -22,17 +22,26 @@ export abstract class Base extends VoxXML {
   }
 
   /**
+   * Adds the "Connect" verb to the VoxXML document
+   *
+   * @param attributes attributes for "Connect"
+   * @returns the "Connect" element
+   */
+  connect(attributes?: Attributes.ConnectAttributes): Connect {
+    return new Connect(this.addChild('Connect', attributes as object))
+  }
+
+  /**
    * Adds the "Dial" verb to the VoxXML document
-   * 
-   * @param attributes attributes for "Dial"
+   *
+   * @param number the number to dial
    * @returns the "Dial" element
    */
   dial(number?: string | number): Dial
 
   /**
    * Adds the "Dial" verb to the VoxXML document
-   * 
-   * @param number the number to dial
+   *
    * @param attributes attributes for "Dial"
    * @returns the "Dial" element
    */
@@ -49,7 +58,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Do" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Do"
    * @returns the "Do" element
    */
@@ -59,7 +68,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Gather" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Gather"
    * @returns the "Gather" element
    */
@@ -69,7 +78,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Hangup" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Hangup"
    * @returns the "Hangup" element
    */
@@ -79,7 +88,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "If" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "If"
    * @returns the "If" element
    */
@@ -89,7 +98,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Pause" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Pause"
    * @returns the "Pause" element
    */
@@ -98,10 +107,20 @@ export abstract class Base extends VoxXML {
   }
 
   /**
+   * Adds the "Pay" verb to the VoxXML document
+   *
+   * @param attributes attributes for "Pay"
+   * @returns the "Pay" element
+   */
+  pay(attributes?: Attributes.PayAttributes): Play {
+    return new Pay(this.addChild('Pay', attributes as object))
+  }
+
+  /**
    * Adds the "Play" verb to the VoxXML document
-   * 
-   * @param url the URL of the audio file to play
+   *
    * @param attributes attributes for "Play"
+   * @param url the URL of the audio file to play
    * @returns the "Play" element
    */
   play(attributes?: Attributes.PlayAttributes, url?: string): Play {
@@ -110,7 +129,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Record" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Record"
    * @returns the "Record" element
    */
@@ -120,9 +139,9 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Redirect" verb to the VoxXML document
-   * 
-   * @param url the URL to redirect to
+   *
    * @param attributes attributes for "Redirect"
+   * @param url the URL to redirect to
    * @returns the "Redirect" element
    */
   redirect(attributes?: Attributes.RedirectAttributes, url?: string): Redirect {
@@ -131,7 +150,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Reject" verb to the VoxXML document
-   * 
+   *
    * @param attributes attributes for "Reject"
    * @returns the "Reject" element
    */
@@ -141,9 +160,9 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Say" verb to the VoxXML document
-   * 
-   * @param text the text to say
+   *
    * @param attributes attributes for "Say"
+   * @param text the text to say
    * @returns the "Say" element
    */
   say(attributes?: Attributes.SayAttributes, text?: string): Say {
@@ -152,9 +171,9 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Set" verb to the VoxXML document
-   * 
-   * @param value the value to set
+   *
    * @param attributes attributes for "Set"
+   * @param value the value to set
    * @returns the "Set" element
    */
   set(attributes?: Attributes.SetAttributes, value?: string): Set {
@@ -163,8 +182,7 @@ export abstract class Base extends VoxXML {
 
   /**
    * Adds the "Unset" verb to the VoxXML document
-   * 
-   * @param name the name of the variable to unset
+   *
    * @param attributes attributes for "Unset"
    * @returns the "Unset" element
    */
@@ -180,6 +198,22 @@ export class If extends Base {}
 // VERBS
 export class Answer extends VoxXML {}
 
+export class Connect extends VoxXML {
+  public constructor(element: XMLBuilder) {
+    super(element)
+  }
+
+  /**
+   * Adds a "Flow" noun to the "Connect" element
+   *
+   * @param guid the GUID of the Flow
+   * @returns the "Flow" element
+   */
+  public flow(attributes?: Attributes.FlowAttributes, guid?: string): Flow {
+    return new Flow(this.addChild('Flow', attributes as object, guid))
+  }
+}
+
 /**
  * Dial verb class. Allows for adding "Number" nouns.
  */
@@ -190,7 +224,7 @@ export class Dial extends VoxXML {
 
   /**
    * Adds a "Number" noun to the "Dial" element
-   * 
+   *
    * @param number the number to dial
    * @returns the "Number" element
    */
@@ -209,9 +243,9 @@ export class Gather extends VoxXML {
 
   /**
    * Adds a "Play" verb to the "Gather" element
-   * 
-   * @param url the URL of the audio file to play
+   *
    * @param attributes attributes for "Play"
+   * @param url the URL of the audio file to play
    * @returns the "Play" element
    */
   play(attributes?: Attributes.PlayAttributes, url?: string): Play {
@@ -220,8 +254,9 @@ export class Gather extends VoxXML {
 
   /**
    * Adds a "Say" verb to the "Gather" element
-   * 
+   *
    * @param attributes attributes for "Say"
+   * @param text the text to say
    * @returns the "Say" element
    */
   say(attributes?: Attributes.SayAttributes, text?: string): Say {
@@ -230,7 +265,7 @@ export class Gather extends VoxXML {
 
   /**
    * Adds a "Pause" verb to the "Gather" element
-   * 
+   *
    * @param attributes attributes for "Pause"
    * @returns the "Pause" element
    */
@@ -241,6 +276,23 @@ export class Gather extends VoxXML {
 
 export class Hangup extends VoxXML {}
 export class Pause extends VoxXML {}
+
+export class Pay extends VoxXML {
+  constructor(element: XMLBuilder) {
+    super(element)
+  }
+
+  /**
+   * Adds a "Prompt" verb to the "Pay" element
+   *
+   * @param attributes attributes for "Prompt"
+   * @returns the "Play" element
+   */
+  prompt(attributes?: Attributes.PromptAttributes): Prompt {
+    return new Prompt(this.addChild('Prompt', attributes as object))
+  }
+}
+
 export class Play extends VoxXML {}
 export class Record extends VoxXML {}
 export class Redirect extends VoxXML {}
@@ -251,3 +303,33 @@ export class Unset extends VoxXML {}
 
 // NOUNS
 export class DialNumber extends VoxXML {}
+
+export class Prompt extends VoxXML {
+  constructor(element: XMLBuilder) {
+    super(element)
+  }
+
+  /**
+   * Adds a "Play" verb to the "Prompt" element
+   *
+   * @param attributes attributes for "Play"
+   * @param url the URL of the audio file to play
+   * @returns the "Play" element
+   */
+  play(attributes?: Attributes.PlayAttributes, url?: string): Play {
+    return new Play(this.addChild('Play', attributes as object, url))
+  }
+
+  /**
+   * Adds a "Say" verb to the "Prompt" element
+   *
+   * @param attributes attributes for "Say"
+   * @param text the text to say
+   * @returns the "Say" element
+   */
+  say(attributes?: Attributes.SayAttributes, text?: string): Say {
+    return new Say(this.addChild('Say', attributes as object, text))
+  }
+}
+
+export class Flow extends VoxXML {}
