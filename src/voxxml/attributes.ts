@@ -707,7 +707,6 @@ export interface DoAttributes {
 }
 
 export interface FlowAttributes {
-  history?: History
   resume?: boolean
 }
 
