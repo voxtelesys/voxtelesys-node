@@ -286,7 +286,7 @@ export class Pay extends VoxXML {
    * Adds a "Prompt" verb to the "Pay" element
    *
    * @param attributes attributes for "Prompt"
-   * @returns the "Play" element
+   * @returns the "Prompt" element
    */
   prompt(attributes?: Attributes.PromptAttributes): Prompt {
     return new Prompt(this.addChild('Prompt', attributes as object))
