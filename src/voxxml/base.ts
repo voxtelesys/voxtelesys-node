@@ -291,6 +291,16 @@ export class Pay extends VoxXML {
   prompt(attributes?: Attributes.PromptAttributes): Prompt {
     return new Prompt(this.addChild('Prompt', attributes as object))
   }
+
+  /**
+   * Adds a "Parameter" verb to the "Pay" element
+   *
+   * @param attributes attributes for "Parameter"
+   * @returns the "Parameter" element
+   */
+  parameter(attributes?: Attributes.ParameterAttributes): Parameter {
+    return new Parameter(this.addChild('Parameter', attributes as object))
+  }
 }
 
 export class Play extends VoxXML {}
@@ -304,6 +314,7 @@ export class Unset extends VoxXML {}
 // NOUNS
 export class DialNumber extends VoxXML {}
 
+export class Parameter extends VoxXML {}
 export class Prompt extends VoxXML {
   constructor(element: XMLBuilder) {
     super(element)

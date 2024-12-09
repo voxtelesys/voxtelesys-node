@@ -793,6 +793,11 @@ export interface PayAttributes {
   validCardTypes?: string
 }
 
+export interface ParameterAttributes {
+  name: string
+  value: string
+}
+
 export interface PromptAttributes {
   attempt?: string
   cardType?: string
