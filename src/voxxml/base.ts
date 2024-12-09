@@ -112,7 +112,7 @@ export abstract class Base extends VoxXML {
    * @param attributes attributes for "Pay"
    * @returns the "Pay" element
    */
-  pay(attributes?: Attributes.PayAttributes): Play {
+  pay(attributes?: Attributes.PayAttributes): Pay {
     return new Pay(this.addChild('Pay', attributes as object))
   }
 
