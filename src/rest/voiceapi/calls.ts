@@ -60,7 +60,13 @@ export interface CreateCallRequest {
   recording_status_callback_event?: string,
   recording_track?: 'inbound' | 'outbound' | 'both',
   recording_channel?: 'mono' | 'dual',
-  flow_guid?: string
+  flow_guid?: string,
+  machine_detection?: 'enable' | 'detect_message_end',
+  machine_detection_timeout?: number,
+  machine_detection_human_residence_speech_threshold?: number,
+  machine_detection_human_business_speech_threshold?: number,
+  machine_detection_speech_end_threshold?: number,
+  machine_detection_silence_timeout?: number
 }
 
 export interface CreateCallResponse {
