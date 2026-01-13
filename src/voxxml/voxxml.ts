@@ -20,8 +20,8 @@ export class VoxXML {
     }
     let node = this.element.ele(name, attributes)
     if (text) {
-      //If the text includes tags, parse as XML
-      const hasTags = /<[a-z][\s\S]*>/i.test(text)
+      // If the text includes tags, parse as XML
+      const hasTags = /<[^>]+>/.test(text)
       if (hasTags) {
         const xmlFragment = fragment(text)
         node.import(xmlFragment)
