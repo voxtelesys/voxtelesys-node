@@ -1,3 +1,4 @@
+import { fragment } from 'xmlbuilder2'
 import { XMLBuilder } from 'xmlbuilder2/lib/interfaces'
 
 /**
@@ -17,16 +18,25 @@ export class VoxXML {
       text = attributes
       attributes = undefined
     }
-
     let node = this.element.ele(name, attributes)
-    if (text) node = node.txt(text as string)
+    if (text) {
+      // If the text includes tags, parse as XML
+      const hasTags = /<[^>]+>/.test(text)
+      if (hasTags) {
+        const xmlFragment = fragment(text)
+        node.import(xmlFragment)
+        return node
+      }
+
+      node.txt(text)
+    }
 
     return node
   }
 
   /**
    * Export the VoxXML as a string
-   * 
+   *
    * @param beautify if true, formats the XML string with line breaks and indentation
    * @returns stringified XML
    */
@@ -36,7 +46,7 @@ export class VoxXML {
 
   /**
    * Adds a comment to the current VoxXML element
-   * 
+   *
    * @param text the text in the comment
    */
   comment(text: string): void {
