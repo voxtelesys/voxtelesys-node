@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "postversion": "npm publish"
+    "postversion": "npm publish && git push && git push --tags"
   },
   "repository": {
     "type": "git",
