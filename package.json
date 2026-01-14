@@ -1,6 +1,6 @@
 {
   "name": "voxtelesys-node",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "SDK for Voxtelesys API services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
